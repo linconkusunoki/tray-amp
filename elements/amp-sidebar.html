@@ -1,0 +1,9 @@
+<amp-sidebar id="sidebar" layout="nodisplay" side="right">
+  <ul>
+    {% for category in categories %}
+      <li>
+        <a href="{{ category.link }}">{{ category.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</amp-sidebar>

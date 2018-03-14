@@ -1,0 +1,16 @@
+<header class="clearfix">
+  <button on="tap:sidebar.toggle" class="ampstart-btn caps m2">
+      <svg width="30" height="30"><use xlink:href="#menu"></use></svg>
+  </button>
+  <a href="{{ links.cart }}" class="cart">
+    <svg width="30" height="30"><use xlink:href="#cart"></use></svg>
+  </a>
+  <h1><a href="{{ links.home }}">{{ store.name }}</a></h1>
+  <form method="get" action="{{ links.search }}" class="search-form" target="_top">
+    <input type="hidden" name="loja" value="{{ store.id }}">
+    <input type="text" name="palavra_busca" class="search-input" value="{{ search.word }}" placeholder="Busca"  tabindex="1" required>
+    <button class="search-button">
+      <svg width="15" height="15"><use xlink:href="#search"></use></svg>
+    </button>
+  </form>
+</header>

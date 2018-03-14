@@ -1,0 +1,93 @@
+<amp-carousel width="320" height="300" layout="responsive" type="slides" class="product-gallery">
+{% if product.images %}
+  {% for slide in product.images %}
+      <amp-img src="{{ slide.full }}" width="1000" height="1000" layout="responsive" alt="{{ product.name }}"></amp-img>
+  {% endfor %}
+{% endif %}
+</amp-carousel>
+
+<h1 class="product-name">{{ product.name }}</h1>
+
+<h2 class="product-price">
+  {% if product.price_offer > 0 %}
+  <small>R$ {{ product.price_offer|currency }}</small>
+  {% endif %}
+  R$ {{ product.price|currency }}
+</h2>
+<form method="GET" action="/loja/carrinho.php" target="_top" class="product-form">
+
+<input type="hidden"
+    name="loja"
+    value="{{store.id}}">
+    
+<input type="hidden"
+    name="acao"
+    value="incluir">
+    
+<input type="hidden"
+    name="IdProd"
+    value="{{product.id}}">
+    
+<input type="hidden"
+    name="quant"
+    value="1">
+
+
+  {% if product.has_variation == 1 %}
+    <div class="product-variants">
+      <select name="variacao" id="variant" required>
+        <option value="">Selecione uma variação</option>
+      {% for key, type in product.variants.sku %}
+        {% for keyType, subType in type %}
+        
+          {# se for variacao dupla, se nao gera simples #}
+          {% if subType.sku|length > 0 %}
+            {% for subType2 in subType %}
+              {% for subType3 in subType2 %}
+                {% for key, subType4 in subType3 %}
+                  {% if subType4.stock > 0 %}
+                  <option value="{{ subType4.id }}">{{keyType}} - {{ key }}</option>
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            {% endfor %}
+          {% else %}
+            {% if subType.stock > 0 %}
+            <option value="{{ subType.id }}">{{keyType}}</option>
+            {% endif %}
+          {% endif %}
+          
+        {% endfor %}
+      {% endfor %}
+      </select>
+    </div>
+  {% endif %}
+  
+  <button>
+    <svg width="30" height="30"><use xlink:href="#cart"></use></svg>
+    <span>Comprar</span>
+  </button>
+  
+  <div submit-success>
+    <template type="amp-mustache">Produto adicionado no carrinho!</template>
+  </div>
+  <div submit-error>
+    <template type="amp-mustache">Oops! O produto não foi adicionado ao carrinho :(</template>
+  </div>
+</form>
+
+<div class="product-tabs">
+  <amp-accordion>
+    <section expanded>
+      <h4 class="tab-title">Descrição</h4>
+      <div class="tab-content">{{ product.description|striptags('<br>') }}</div>
+    </section>
+  </amp-accordion>
+</div>
+
+<div class="product-share">
+  <amp-social-share type="email"></amp-social-share>
+  <amp-social-share type="facebook" data-param-app_id="254325784911610"></amp-social-share>
+  <amp-social-share type="twitter"></amp-social-share>
+  <amp-social-share type="whatsapp"></amp-social-share>
+</div>

@@ -1,0 +1,35 @@
+{% if settings.structure == 1 %}
+<aside class="sidebar col-sm-3 hidden-xs">
+{% elseif settings.structure == 2%}
+<aside class="sidebar col-sm-3 hidden-xs pull-right">
+{% endif %}
+    
+    {% element 'snippets/menu' %}
+    
+    <div class="news-full">
+        {% element 'snippets/newsletter' %}
+    </div>
+    
+    {% if banner.side %}
+    <div class="banner banner-sidebar">
+        {{ banner.side }}
+    </div>
+    {% endif %}
+    
+    {% if settings.store_rating %}
+    <div class="store-rating">
+        <h4>As melhores</h4>
+        <h3>Avalia&ccedil;&otilde;es</h3>
+        {% element 'CustomerReview.reviews' %}
+    </div>
+    {% endif %}
+    
+    {% if settings.store_top_search %}
+    <div class="tagcloud">
+        <h4>As palavras</h4>
+        <h3>Mais buscadas</h3>
+        {% element 'snippets/tagcloud' %}
+    </div>
+    {% endif %}
+    
+</aside>

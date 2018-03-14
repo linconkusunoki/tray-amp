@@ -1,0 +1,360 @@
+.page-catalog,
+.page-search{
+    
+    .catalogo-comparator{
+        background: #3d4445;
+        color: #fff;
+        margin: 0;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        text-align: left;
+        text-transform: uppercase;
+        top: -75px;
+        width: auto;
+        @include typo(1.2rem, 700, $font);
+        
+        @media screen and (max-width: $sm){
+            clear: both;
+            display: block;
+            margin-top: 15px;
+            position: static;
+            text-align: center;
+        }
+        
+        &:hover{
+            background: #3d4445;
+            color: #fff;
+        }
+    }
+    
+    .sidebar-hidden{
+        @media screen and (max-device-width: 1024px){
+            display: none !important;
+        }
+    }
+    
+    .catalog-menu.vertical-nav {
+        border: none;
+        height: auto;
+        margin: -15px;
+    }
+    
+    .smart-filter{
+        
+        a{
+            color: #3d4445;
+            text-decoration: none;
+            @include typo(1.2rem, 400, $font, 1.7rem);
+        }
+    }
+    
+    // checkbox
+    .filter-checkbox{
+        border: 1px solid #aaa;
+        border-radius: 2px;
+        display: inline-block;
+        height: 14px;
+        margin-right: 5px;
+        position: relative;
+        vertical-align: top;
+        width: 14px;
+        
+        &.checked:before{
+            border-bottom: 2px solid #000;
+            border-left: 2px solid #000;
+            content: '';
+            height: 5px;
+            left: 1px;
+            position: absolute;
+            top: 2px;
+            width: 10px;
+            @include prefix('transform', 'rotate(-45deg)');
+        }
+    }
+    
+    .banner-title{
+        margin-bottom: 15px;
+    }
+    
+    .catalog-header{
+        background: #fff;
+        border: 1px solid #e2e2e2;
+        padding: 15px;
+        
+        .catalogo-pagination{
+            margin-top: 15px;
+            position: relative;
+        }
+    }
+    
+    .catalog-content{
+        margin-top: 15px;
+    }
+    
+    .catalog-footer{
+        background: #fff;
+        border: 1px solid #e2e2e2;
+        margin-top: 15px;
+        padding: 15px;
+        
+        .catalogo-comparator{
+            display: none;
+        }
+    }
+    
+    // catalog name
+    .catalog-name{
+        color: #3d4445;
+        margin-bottom: 15px;
+        @include typo(2.5rem, 700, $font);
+    }
+    
+    // pagination
+    .catalogo-display{
+        color: #3d4445;
+        font-size: 1.4rem;
+        line-height: 2rem;
+        
+        @media screen and (max-width: $sm){
+            float: none;
+            text-align: center;
+        }
+    }
+    
+    .catalogo-pages,
+    .pagination{
+        color: #3d4445;
+        font-size: 1.4rem;
+        line-height: 22px;
+        margin-top: 15px;
+        
+        @media screen and (max-width: $sm){
+            float: none;
+            text-align: center;
+        }
+    }
+    
+    .paginate-links{
+        text-align: right;
+        
+        .page-current{
+            border-color: #3d4445;
+            color: #3d4445;            
+        }
+        
+        @media screen and (max-width: $sm){
+            float: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+    }
+    
+    .btns-paginator,
+    .page-link{
+        border: 1px solid #aaa;
+        color: #a2a2a2;
+        display: inline-block;
+        line-height: 2rem;
+        margin: 0 5px;
+        vertical-align: top;
+        
+        
+        &.page-current{
+            padding: 0 5px;    
+        }
+        
+        &:hover{
+            border-color: #000;
+        }
+        
+        a{
+            color: #aaa;
+            display: block;
+            line-height: 2rem;
+            padding: 0 5px;
+            
+            &:hover{
+                color: #000;
+                text-decoration: none;
+            }
+        }
+        
+        &.selectedPg{
+            border-color: #3d4445;
+            color: #3d4445;
+            padding: 0 5px;
+        }
+        
+        @media screen and (max-width: $sm){
+            &.btn-proxima-pagina,
+            &.btn-ultima-pagina,
+            &.btn-primeira-pagina,
+            &.btn-pagina-anterior{
+                display: block !important;
+                margin: 15px 0 !important;
+                text-align: center;
+            }
+        }
+    }
+    
+    .separador-paginas{
+        display: none;
+    }
+    
+    // system filters
+    .system-filter{
+        
+        .filtros{
+            display: inline-block;
+            float: none;
+            margin-right: 15px;
+            vertical-align: top;
+            @include typo(1.4rem, 400, $font);
+            
+            @media screen and (min-width: 768px) and (max-width: 1199px){
+                display: block;
+                margin: 0 0 15px;
+                width: 100%;
+            }
+            
+            @media screen and (max-width: $sm){
+                display: block;
+                margin-top: 15px;
+                margin-right: 0;
+                
+                .select{
+                    display: block;
+                    margin-top: 5px;
+                }
+            }
+        
+            .select{
+                display: block;
+                margin-top: 3px;
+                padding: 8px;
+                width: 150px;
+                @include typo(1.4rem, 400, $font);
+            }
+        }
+    }
+    
+    // breadcrumb
+    .breadcrumb{
+        margin-bottom: 15px;
+        padding: 0;
+    }
+    
+    // search advanced
+    #vitrine-catalogo{
+        
+        #Vitrine + br,
+        #Vitrine + br + .container,
+        .container3:first-child{
+            display: none;
+        }
+        
+        #Vitrine{
+            background: #fff;
+            font-size: 1.4rem;
+            padding: 30px;
+            
+            @media screen and (max-width: $sm){
+                text-align: left;
+            }
+            
+            input[type="text"]{
+                padding: 5px;
+                
+                @media screen and (max-width: $sm){
+                    border: 1px solid #e2e2e2;
+                    display: block;
+                    margin: 3px 0 15px;
+                    width: 100%;
+                    
+                    &[name="palavra_busca"]{
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+            
+            .select{
+                padding: 5px;
+                
+                @media screen and (max-width: $sm){
+                    border: 1px solid #e2e2e2;
+                    display: block;
+                    margin-top: 3px;
+                    width: 100%;
+                }
+            }
+            
+            form p{
+                line-height: 2rem;
+                margin: 30px 0;
+                
+                input{
+                    margin-right: 5px;
+                }
+            }
+            
+            input[type="image"]{
+                background: url('../img/send-button.png') left top;
+                height: 0;
+                padding: 20px 65px;
+                width: 0;
+            }
+        }
+        
+        .blocoAlerta{
+            margin: 30px 0;
+        }
+        
+        #div_erro{
+            
+            a h3{
+                font-size: 1.6rem;
+            }
+        }
+    }
+    
+    // comparator
+    .button-compare{
+        background: #000;
+        color: #fff;
+        float: right;
+        margin-top: 18px;
+        padding: 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+        @include typo(1.6rem, 400, $font, 1.6rem);
+        
+        @media screen and (max-width: $sm){
+            display: block;
+            float: none;
+            margin: 15px 0;
+            text-align: center;
+        }
+    }
+    
+    .compare-buttons{
+        margin-top: 15px;
+        
+        a{
+            color: #3d4445;
+            text-decoration: none;
+            @include typo(1.2rem, 400, $font, 1.7rem);
+        }
+    }
+    
+    // catalog empty
+    .catalog-empty{
+        background: #fff;
+        padding: 0 30px 30px;
+        text-align: center;
+        
+        p{
+            font-size: 2rem;
+        }
+    }
+}

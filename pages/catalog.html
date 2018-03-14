@@ -1,0 +1,24 @@
+<div class="catalog-header">
+  <h2 class="catalog-name">{{ category.name }}</h2>
+  {% if products|length > 0 %}    
+    <div class="pagination clearfix">
+      {% element 'amp-paginate' %}
+    </div>
+  {% endif %} 
+</div>
+{% if products|length > 0 %}
+  <div class="catalog-content">
+    {% element 'showcase-catalog' {
+      "products": products
+    } %}
+  </div>
+  <div class="catalog-footer pagination">
+    {% element 'amp-paginate' %}
+  </div>
+{% else %}
+  <div class="catalog-empty">
+    <p>Nenhum produto encontrado nessa categoria.</p>
+  </div>
+{% endif %}
+
+{% element 'amp-smartfilter' %}

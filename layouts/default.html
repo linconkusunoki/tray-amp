@@ -1,0 +1,81 @@
+{% spaceless %}
+
+    {% set fullParams = store.current_url|split('?') %}
+    {% set paramArray = [] %}
+    {% set params = [] %}
+    
+    {% for param in fullParams %}
+        {% set paramArray = param|split('&') %}
+    {% endfor %}
+    
+    {% for param in paramArray %}
+        {% set param = param|split('=')[0] %}
+        {% set params = params|merge([param]) %}
+    {% endfor %}
+
+    <!doctype html>
+    <html amp lang="en" class="page-{{ pages.current }}">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+            <meta name="google-site-verification" content="hkXX2B1sTUeqMLLLiE9_lXw1N3UfKWYYdaSki_4KWnE" />
+            <script async src="https://cdn.ampproject.org/v0.js"></script>
+            
+            {% if pages.current == 'home' %}
+                <title>{{ 'amp' in params ? 'AMP' : 'Normal' }}</title>
+            {% elseif pages.current == 'product' %}
+                <title>{{ product.name }}</title>
+            {% elseif pages.current == 'catalog' %}
+                <title>{{ category.name }}</title>
+            {% endif %}
+            
+            <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+            <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+            
+            {% if pages.current == 'product' or pages.current == 'home' %}
+                <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+            {% endif %}
+
+           {% set canonical = store.current_url|split('?') %}
+            <link rel="canonical" href="https:{{ canonical[0] }}" />
+            
+            {% if 'amp' in params %}
+                <link rel="amphtml" href="https:{{ store.current_url }}" />
+           {% else %}
+            <link rel="amphtml" href="https:{{ store.current_url }}?amp" />
+            {% endif %}
+            
+            
+           
+           
+            {% if pages.current == 'product' %}
+                <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
+                <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+                <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+            {% endif %}
+            
+            {% element 'amp-title' %}
+        
+            <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+           
+        
+            <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+            {% element 'amp-style' %}
+        </head>
+      <body>
+     
+        {% element 'amp-icons' %}
+        {% element 'amp-header' %}
+        {% element 'amp-sidebar' %}
+        {{ content_for_layout }}
+        {% element 'amp-footer' %}
+       
+        
+        <amp-img src="https://images.tcdn.com.br/commerce/assets/store/js/dist/pageview.min.js?a83514c74cf6691ebbab7d2f7cf1651f&data-store={{ store.id }}" alt="pageview" height="5" width="7"></amp-img>
+        {% if pages.current == 'checkout_cart' %}
+            {% element 'snippets/pageview' %}
+        {% endif %}
+</body>
+    </html>
+    
+{% endspaceless %}

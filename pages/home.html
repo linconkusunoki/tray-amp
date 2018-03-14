@@ -1,0 +1,46 @@
+{% element 'amp-banner' %}
+
+<ul class="featured-categories">
+{% for category in categories %}
+  {% if loop.index <= 10 %}
+    <li>
+      <a href="{{ category.link }}">
+        <figure>
+          {% if category.images %}
+          <amp-img width="90" height="90" layout="responsive" alt="{{ category.name }}" src="{{ category.images[0] }}"></amp-img>
+          {% endif %}
+        </figure>
+        <h2>{{ category.name }}</h2>
+      </a>
+    </li>
+  {% endif %}
+{% endfor %}
+  <li>
+    <a href="{{ links.map }}">
+      <figure>
+        <span>+</span>
+      </figure>
+      <h2>Todas as categorias</h2>
+    </a>
+  </li>
+</ul>
+
+{% set products = Products({
+  'filter': 'featured',
+  'limit': 6,
+  'order': 'rand'
+}) %}
+<h3 class="showcase-title">Destaques</h3>
+{% element 'showcase' {"products": products} %}
+
+<div class="showcase-banner">
+  <amp-img width="320" height="150" layout="responsive" alt="{{ product.name }}" src="{{ banners.extra2.src }}"></amp-img>
+</div>
+
+{% set products = Products({
+  'filter': 'new',
+  'limit': 6,
+  'order': 'rand'
+}) %}
+<h3 class="showcase-title">Novidades</h3>
+{% element 'showcase' {"products": products} %}

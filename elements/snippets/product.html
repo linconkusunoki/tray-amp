@@ -1,0 +1,14 @@
+<a href="{{ product.link }}" itemscope itemtype="http://schema.org/Product" class="product">
+  <div class="product-image">
+    {% if product.images %}
+      <amp-img width="180" height="180" layout="responsive" alt="{{ product.name }}" src="{{ product.images[0].large }}"></amp-img>
+    {% endif %}
+  </div>
+  <div class="product-info">
+    <div class="product-price">
+      {% element 'snippets/price' {"product": product} %}
+    </div>
+    <h2 class="product-name" itemprop="name">{{ product.name }}</h2>
+    {% element "snippets/product-stars" {"ranking": product.ranking } %}
+  </div>
+</a>

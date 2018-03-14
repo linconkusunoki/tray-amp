@@ -1,0 +1,9 @@
+{% if pages.current == 'product' %}
+  <title>{{ product.name }}</title>
+{% elseif pages.current == 'catalog' %}
+  <title>{{ store.name }} | {{ category.name }}</title>
+{% elseif pages.current == 'search' and search.word %}
+  <title>{{ store.name }} | {{ search.word }}</title>
+{% else %}
+  <title>{{ store.name }}</title>
+{% endif %}

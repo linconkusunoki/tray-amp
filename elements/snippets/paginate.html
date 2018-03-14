@@ -1,0 +1,16 @@
+<div class="search-counter">
+  {{ paginate.counter('{:count} produto(s) em {:pages} p&aacute;gina(s)') }}
+</div>
+
+<div class="paginate-links">
+{% if paginate.params.pageCount > 1 %}
+  {{ paginate.numbers({
+    'modulus': 5,
+    'separator': '',
+    'class': 'page-link',
+    'currentClass': 'page-current'
+  }) }}
+{% endif %}
+
+<label for="smartfilter" class="open-smartfilter">Filtrar</span>
+</div>

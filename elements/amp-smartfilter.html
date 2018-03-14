@@ -1,0 +1,82 @@
+{% if filters %}
+<input type="checkbox" id="smartfilter" class="hidden">
+<div class="smartfilter">
+    <label for="smartfilter" class="toggle-smartfilter">Fechar</label>
+    <input type="hidden" name="loja" value="{{ store.id }}">
+    {% if search.word %}
+      <input name="palavra_busca" type="hidden" value="{{ search.word }}">
+    {% endif %}
+
+    {% if category.id %}
+        <input type="hidden" name="categoria" value="{{ category.id }}">
+    {% endif %}
+
+    {% if filters.applied %}
+    <div class="box-filter applied">
+            <h3>Filtros Aplicados</h3>
+            <ul>
+                {% for applied in filters.applied %}
+                    {% for item in applied %}
+                        <li>
+                            <a href="{{ item.url }}">{{ item.title }}</a>
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% for myFilter in filters %}
+        {% if myFilter.items %}
+        <div class="box-filter myfilter">
+            <h3>{{ myFilter.title }}</h3>
+            <ul>
+            {% for item in myFilter.items %}
+                <li>
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% elseif myFilter|length %}
+           {% for var in myFilter %}
+               {% if var.items %}
+                   <div class="box-filter varfilter {{ var.title|lower }}">
+                       <h3>{{ var.title }}</h3>
+                       <ul>
+                           {% for item in var.items %}
+                                {% if settings.filter_colors %}
+                                    
+                                    {% if item.image_color_secure or item.image_color %}
+                                        <li class="image-filter">
+                                            <a href="{{ item.url }}">
+                                                {% if utils.is_https %}
+                                                    {% if item.image_color_secure %}
+                                                        <img src="{{ item.image_color_secure }}">
+                                                    {% endif%}
+                                                {% else %}
+                                                    {% if item.image_color %}
+                                                        <img src="{{ item.image_color }}">
+                                                    {% endif%}
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <a href="{{ item.url }}">{{ item.title }}</a>
+                                        </li>
+                                    {% endif %}
+                                    
+                                {% else %}
+                                    <li>
+                                        <a href="{{ item.url }}">{{ item.title }}</a>
+                                    </li>
+                                {% endif %}
+                           {% endfor %}
+                       </ul>
+                    </div>
+                {% endif %}
+           {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}

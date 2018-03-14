@@ -1,0 +1,9 @@
+<amp-carousel width="320" height="300" layout="responsive" type="slides">
+{% if banners.home.slides %}
+  {% for slide in banners.home.slides %}
+    <a href="{{ slide.link }}" target="{{ slide.target }}">
+      <amp-img src="https://fakeimg.pl/320x300" width="320" height="300" layout="responsive" alt="a sample image"></amp-img>
+    </a>
+  {% endfor %}
+{% endif %}
+</amp-carousel>

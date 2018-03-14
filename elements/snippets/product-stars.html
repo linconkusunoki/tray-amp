@@ -1,0 +1,15 @@
+{% set emptyStar = 5 - ranking.rating %}
+<p class="product-star" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+  {% if ranking.rating > 0 %}
+    {% for star in 1..ranking.rating %}
+      <span>&#9733;</span>
+    {% endfor %}
+  {% endif %}
+  {% if emptyStar > 0 %}
+    {% for empty in 1..emptyStar %}
+      <span>&#9734;</span>
+    {% endfor %}
+  {% endif %}
+  <span class="hidden" itemprop="ratingValue">{{ ranking.rating }}</span>
+  <span class="hidden" itemprop="reviewCount">{{ ranking.count }}</span>
+</p>
